@@ -1,22 +1,22 @@
 import { useState } from "react";
 import "./App.css";
+import TodoItem from "./components/TodoItem";
 
 let nextIndex = 0;
+var title;
 
 function App() {
-  const [titleInput, setTextInput] = useState("");
+  /* const [titleInput, setTextInput] = useState(""); */
 
   const [todoList, setTodoList] = useState([]);
 
   function handlerTextInput(event) {
-    setTextInput(event.target.value);
+    /* setTextInput(event.target.value); */
+    title = event.target.value;
   }
 
   function addTodoItem() {
-    setTodoList([
-      ...todoList,
-      { id: nextIndex++, title: titleInput, done: true },
-    ]);
+    setTodoList([...todoList, { id: nextIndex++, title: title, done: true }]);
   }
 
   function showList() {
@@ -33,11 +33,7 @@ function App() {
         <h1> TODO-APP</h1>
         <div>
           <h2>Title:</h2>
-          <input
-            type="text"
-            value={titleInput}
-            onChange={handlerTextInput}
-          ></input>
+          <input type="text" onChange={handlerTextInput}></input>
         </div>
         <button onClick={addTodoItem}> ADD</button>
 
@@ -48,7 +44,9 @@ function App() {
         <div>
           <ul>
             {todoList.map((item) => (
-              <li key={item.id}>{item.title}</li>
+              <li key={item.id}>
+                <TodoItem title={item.title} />
+              </li>
             ))}
           </ul>
         </div>
