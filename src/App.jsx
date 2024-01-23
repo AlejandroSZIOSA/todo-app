@@ -1,10 +1,12 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [textInput, setTextInput] = useState("");
+
+  function handleTextInput(event) {
+    setTextInput(event.target.value);
+  }
 
   return (
     <>
@@ -12,7 +14,14 @@ function App() {
         <h1> TODO-APP</h1>
 
         <div>
-          <input type="text"></input>
+          <h2>Title:</h2>
+          <input
+            type="text"
+            value={textInput}
+            onChange={handleTextInput}
+          ></input>
+
+          {textInput}
         </div>
         <button> ADD</button>
       </div>
