@@ -10,6 +10,8 @@ function App() {
 
   const [todoList, setTodoList] = useState([]);
 
+  const [isBtnDoneActive, setIsBtnActive] = useState(false);
+
   function handlerTextInput(event) {
     /* setTextInput(event.target.value); */
     title = event.target.value;
@@ -17,6 +19,10 @@ function App() {
 
   function addTodoItem() {
     setTodoList([...todoList, { id: nextIndex++, title: title, done: true }]);
+  }
+
+  function removeTodoItem() {
+    console.log("hola");
   }
 
   function showList() {
@@ -45,7 +51,7 @@ function App() {
           <ul>
             {todoList.map((item) => (
               <li key={item.id}>
-                <TodoItem title={item.title} />
+                <TodoItem title={item.title} onClickFn={removeTodoItem} />
               </li>
             ))}
           </ul>
