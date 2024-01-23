@@ -41,8 +41,16 @@ function App() {
         </div>
         <button onClick={addTodoItem}> ADD</button>
 
-        <div>
+        {/* <div>
           <button onClick={showList}> Show </button>
+        </div> */}
+
+        <div>
+          <ul>
+            {todoList.map((item) => (
+              <li key={item.id}>{item.title}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </>
