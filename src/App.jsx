@@ -1,29 +1,49 @@
 import { useState } from "react";
 import "./App.css";
 
-function App() {
-  const [textInput, setTextInput] = useState("");
+let nextIndex = 0;
 
-  function handleTextInput(event) {
+function App() {
+  const [titleInput, setTextInput] = useState("");
+
+  const [todoList, setTodoList] = useState([]);
+
+  function handlerTextInput(event) {
     setTextInput(event.target.value);
   }
 
+  function addTodoItem() {
+    setTodoList([
+      ...todoList,
+      { id: nextIndex++, title: titleInput, done: true },
+    ]);
+  }
+
+  function showList() {
+    console.log(todoList);
+  }
+
+  /* const list = todoList.map((id) => {
+    console.log(id);
+  });
+ */
   return (
     <>
       <div>
         <h1> TODO-APP</h1>
-
         <div>
           <h2>Title:</h2>
           <input
             type="text"
-            value={textInput}
-            onChange={handleTextInput}
+            value={titleInput}
+            onChange={handlerTextInput}
           ></input>
-
-          {textInput}
         </div>
-        <button> ADD</button>
+        <button onClick={addTodoItem}> ADD</button>
+
+        <div>
+          <button onClick={showList}> Show </button>
+        </div>
       </div>
     </>
   );
