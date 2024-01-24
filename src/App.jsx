@@ -10,15 +10,18 @@ function App() {
 
   const [todoList, setTodoList] = useState([]);
 
-  const [isBtnDoneActive, setIsBtnActive] = useState(false);
-
   function handlerTextInput(event) {
     /* setTextInput(event.target.value); */
     title = event.target.value;
   }
 
   function addTodoItem() {
-    setTodoList([...todoList, { id: nextIndex++, title: title, done: true }]);
+    setTodoList([...todoList, { id: nextIndex++, title: title, done: false }]);
+  }
+
+  function switchDoneUndone(id) {
+    /*   const value = event.target.value; */
+    console.log(id);
   }
 
   function removeTodoItem() {
@@ -36,7 +39,7 @@ function App() {
   return (
     <>
       <div>
-        <h1> TODO-APP</h1>
+        <h2> TODO-APP</h2>
         <div>
           <h2>Title:</h2>
           <input type="text" onChange={handlerTextInput}></input>
@@ -51,7 +54,11 @@ function App() {
           <ul>
             {todoList.map((item) => (
               <li key={item.id}>
-                <TodoItem title={item.title} onClickFn={removeTodoItem} />
+                <TodoItem
+                  itemObj={item}
+                  onClickSwitchFn={switchDoneUndone}
+                  /* onClickFn={removeTodoItem} */
+                />
               </li>
             ))}
           </ul>
