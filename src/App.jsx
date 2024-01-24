@@ -2,57 +2,72 @@ import { useState } from "react";
 import "./App.css";
 import TodoItem from "./components/TodoItem";
 
+//External variables
 var nextIndex = 0;
 var title;
+
+const styles = {
+  ADD_TODO_CONTAINER: {
+    display: "flex",
+    flexDirection: "row",
+    gap: "10px",
+    alignItems: "center",
+    fontSize: "20px",
+  },
+};
 
 function App() {
   const [todoList, setTodoList] = useState([]);
 
-  const [btnDoneColor, setBtnDoneColor] = useState("red");
-
+  //Capture the text input
   function handlerTextInput(event) {
     title = event.target.value;
   }
 
+  //Add Item to the todo list
   function addTodoItem() {
     setTodoList([...todoList, { id: nextIndex++, title: title, done: false }]);
   }
 
+  //Callback function event with params
   function handleDoneUndoneData(id, done) {
-    console.log(id, done);
-    const toDoItems = [...todoList];
-    const modifyItem = toDoItems.find((i) => i.id === id);
+    //console.log(id, done);
+    const toDoItems = [...todoList]; //Make a copy of actual "todo list"
+    const modifyItem = toDoItems.find((i) => i.id === id); //Find the "item" that will be modify
+    //Conditional: Set new values
     if (done) {
       modifyItem.done = false;
-      setBtnDoneColor("orange");
     } else {
       modifyItem.done = true;
-      setBtnDoneColor("green");
     }
+    //Update the "todo list" state
     setTodoList(toDoItems);
   }
 
+  //Callback function event with params
   function handleRemoveTodoItem(id) {
-    /* This modify the actual todo list by excluding the given 
-    "id", then set the new "array object" state */
+    /* This modify the current todo list by excluding the given 
+    "id", then set the new "array object" state (update) */
     setTodoList(todoList.filter((a) => a.id !== id));
   }
 
   return (
     <>
       <div>
-        <h2> TODO-APP</h2>
-        <div>
-          <h2>Title:</h2>
+        <h1> TODO-APP</h1>
+        <div style={styles.ADD_TODO_CONTAINER}>
+          <div>Title:</div>
           <input type="text" onChange={handlerTextInput}></input>
+          <button onClick={addTodoItem} style={{ backgroundColor: "aqua" }}>
+            Add
+          </button>
         </div>
-        <button onClick={addTodoItem}>ADD</button>
+
         <div>
           <ul>
             {todoList.map((item) => (
               <li key={item.id}>
                 <TodoItem
-                  bgColor={btnDoneColor}
                   itemObj={item} /* Passing object as prop :)*/
                   onClickDoneUndoneFn={
                     handleDoneUndoneData
