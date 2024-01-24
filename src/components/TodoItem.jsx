@@ -11,7 +11,7 @@ export default function TodoItem(props) {
         {id}
       </h3>
       <button onClick={() => props.onClickSwitchFn(id, done)}>
-        {done ? "done" : "undone"}
+        {done ? "Done" : "unDone"}
       </button>
     </div>
   );
