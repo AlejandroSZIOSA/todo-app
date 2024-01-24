@@ -6,14 +6,11 @@ var nextIndex = 0;
 var title;
 
 function App() {
-  /* const [titleInput, setTextInput] = useState(""); */
-
   const [todoList, setTodoList] = useState([]);
 
-  /* const [isDoneBtn, setIsDoneBtn] = useState(false); */
+  const [btnDoneColor, setBtnDoneColor] = useState("red");
 
   function handlerTextInput(event) {
-    /* setTextInput(event.target.value); */
     title = event.target.value;
   }
 
@@ -27,14 +24,17 @@ function App() {
     const modifyItem = toDoItems.find((i) => i.id === id);
     if (done) {
       modifyItem.done = false;
+      setBtnDoneColor("orange");
     } else {
       modifyItem.done = true;
+      setBtnDoneColor("green");
     }
     setTodoList(toDoItems);
   }
 
   function handleRemoveTodoItem(id) {
-    //This modify the actual todo list by excluding the given "id" then set the new "array object"
+    /* This modify the actual todo list by excluding the given 
+    "id", then set the new "array object" state */
     setTodoList(todoList.filter((a) => a.id !== id));
   }
 
@@ -57,6 +57,7 @@ function App() {
             {todoList.map((item) => (
               <li key={item.id}>
                 <TodoItem
+                  bgColor={btnDoneColor}
                   itemObj={item} /* Passing object as prop :)*/
                   onClickDoneUndoneFn={
                     handleDoneUndoneData
