@@ -10,7 +10,7 @@ function App() {
 
   const [todoList, setTodoList] = useState([]);
 
-  const [isDoneBtn, setIsDoneBtn] = useState(false);
+  /* const [isDoneBtn, setIsDoneBtn] = useState(false); */
 
   function handlerTextInput(event) {
     /* setTextInput(event.target.value); */
@@ -22,15 +22,17 @@ function App() {
   }
 
   function handleDoneUndoneData(id, done) {
-    /*   const value = event.target.value; */
     console.log(id, done);
     const toDoItems = [...todoList];
     const modifyItem = toDoItems.find((i) => i.id === id);
-    modifyItem.done = true;
+
+    if (done) {
+      modifyItem.done = false;
+    } else {
+      modifyItem.done = true;
+    }
     setTodoList(toDoItems);
   }
-
-  function toggleDoneUndoneBtn(done) {}
 
   function removeTodoItem() {
     console.log("hola");
