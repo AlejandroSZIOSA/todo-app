@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import TodoItem from "./components/TodoItem";
 
-let nextIndex = 0;
+var nextIndex = 0;
 var title;
 
 function App() {
@@ -25,7 +25,6 @@ function App() {
     console.log(id, done);
     const toDoItems = [...todoList];
     const modifyItem = toDoItems.find((i) => i.id === id);
-
     if (done) {
       modifyItem.done = false;
     } else {
@@ -34,18 +33,11 @@ function App() {
     setTodoList(toDoItems);
   }
 
-  function removeTodoItem() {
-    console.log("hola");
+  function handleRemoveTodoItem(id) {
+    //This modify the actual todo list by excluding the given "id" then set the new "array object"
+    setTodoList(todoList.filter((a) => a.id !== id));
   }
 
-  function showList() {
-    console.log(todoList);
-  }
-
-  /* const list = todoList.map((id) => {
-    console.log(id);
-  });
- */
   return (
     <>
       <div>
@@ -65,9 +57,11 @@ function App() {
             {todoList.map((item) => (
               <li key={item.id}>
                 <TodoItem
-                  itemObj={item}
-                  onClickSwitchFn={handleDoneUndoneData}
-                  /* onClickFn={removeTodoItem} */
+                  itemObj={item} /* Passing object as prop :)*/
+                  onClickDoneUndoneFn={
+                    handleDoneUndoneData
+                  } /* Callback Functions with params */
+                  onClickRemoveItemFn={handleRemoveTodoItem}
                 />
               </li>
             ))}
