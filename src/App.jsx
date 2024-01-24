@@ -46,12 +46,7 @@ function App() {
           <h2>Title:</h2>
           <input type="text" onChange={handlerTextInput}></input>
         </div>
-        <button onClick={addTodoItem}> ADD</button>
-
-        {/* <div>
-          <button onClick={showList}> Show </button>
-        </div> */}
-
+        <button onClick={addTodoItem}>ADD</button>
         <div>
           <ul>
             {todoList.map((item) => (
@@ -61,7 +56,7 @@ function App() {
                   itemObj={item} /* Passing object as prop :)*/
                   onClickDoneUndoneFn={
                     handleDoneUndoneData
-                  } /* Callback Functions with params */
+                  } /* Callback event Functions with params */
                   onClickRemoveItemFn={handleRemoveTodoItem}
                 />
               </li>

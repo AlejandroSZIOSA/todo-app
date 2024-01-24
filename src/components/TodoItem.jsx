@@ -1,6 +1,6 @@
 import React from "react";
 export default function TodoItem(props) {
-  //Destructuring object
+  //Destructuring Item object :)
   const title = props.itemObj.title;
   const id = props.itemObj.id;
   const done = props.itemObj.done;
