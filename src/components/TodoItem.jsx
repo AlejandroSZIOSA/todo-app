@@ -18,7 +18,7 @@ export default function TodoItem(props) {
         {title} {"/ ID= "}
         {id}
       </h3>
-      <button onClick={() => props.onClickSwitchFn(id)}>Done</button>
+      <button onClick={() => props.onClickSwitchFn(id, done)}>Done</button>
     </div>
   );
 }
