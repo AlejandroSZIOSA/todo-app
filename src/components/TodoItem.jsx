@@ -14,24 +14,51 @@ export default function TodoItem(props) {
     btnDoneColor = "orange";
   }
 
+  const styles = {
+    CONTAINER: {
+      backgroundColor: "#E4E4E4",
+      display: "flex",
+      flexDirection: "row",
+      width: "600px",
+      border: "2px solid black",
+      borderRadius: "5px",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+    BUTTONS_CONTAINER: {
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+    },
+    TITLE_STYLE: {
+      fontSize: "x-large",
+      paddingLeft: "10px",
+      fontFamily: "cursive",
+    },
+  };
+
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
-      <h3>{title}</h3>
-      <div>
-        <button
-          onClick={() => props.onClickDoneUndoneFn(id, done)} //Using arrow functions to pass params :)
-          style={{ backgroundColor: btnDoneColor }}
-        >
-          {done ? "Done" : "unDone"}
-        </button>
-      </div>
-      <div>
-        <button
-          onClick={() => props.onClickRemoveItemFn(id)} //Using arrow functions to pass params :)
-          style={{ backgroundColor: "red" }}
-        >
-          Remove
-        </button>
+    <div style={styles.CONTAINER}>
+      <div style={styles.TITLE_STYLE}>{title}</div>
+      <div style={styles.BUTTONS_CONTAINER}>
+        <div style={{ padding: "6px" }}>
+          <button
+            onClick={() => props.onClickDoneUndoneFn(id, done)} //Using arrow functions to pass params
+            style={{
+              backgroundColor: btnDoneColor,
+            }}
+          >
+            {done ? "Done" : "unDone"}
+          </button>
+        </div>
+        <div style={{ padding: "6px" }}>
+          <button
+            onClick={() => props.onClickRemoveItemFn(id)} //Using arrow functions to pass params :)
+            style={{ backgroundColor: "red" }}
+          >
+            Remove
+          </button>
+        </div>
       </div>
     </div>
   );

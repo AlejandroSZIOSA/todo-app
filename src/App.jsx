@@ -7,12 +7,19 @@ var nextIndex = 0;
 var title;
 
 const styles = {
-  ADD_TODO_CONTAINER: {
+  ADD_TODO_ITEM_CONTAINER: {
     display: "flex",
     flexDirection: "row",
     gap: "10px",
     alignItems: "center",
     fontSize: "20px",
+  },
+  ADD_TODO_ITEM_BTN: {
+    backgroundColor: "aqua",
+  },
+  TODO_LISTA_CONTAINER: {
+    display: "flex",
+    flexDirection: "column",
   },
 };
 
@@ -54,16 +61,26 @@ function App() {
   return (
     <>
       <div>
-        <h1> TODO-APP</h1>
-        <div style={styles.ADD_TODO_CONTAINER}>
-          <div>Title:</div>
-          <input type="text" onChange={handlerTextInput}></input>
-          <button onClick={addTodoItem} style={{ backgroundColor: "aqua" }}>
+        <h1> TODO - APP</h1>
+        <div style={styles.ADD_TODO_ITEM_CONTAINER}>
+          <h2>
+            <strong>Title:</strong>
+          </h2>
+          <div>
+            <input
+              type="text"
+              onChange={handlerTextInput}
+              size="15"
+              maxLength="17"
+              style={{ height: "40px", fontSize: "xx-large" }}
+            ></input>
+          </div>
+          <button onClick={addTodoItem} style={styles.ADD_TODO_ITEM_BTN}>
             Add
           </button>
         </div>
 
-        <div>
+        <div style={styles.TODO_LISTA_CONTAINER}>
           <ul>
             {todoList.map((item) => (
               <li key={item.id}>
@@ -74,6 +91,7 @@ function App() {
                   } /* Callback event Functions with params */
                   onClickRemoveItemFn={handleRemoveTodoItem}
                 />
+                <br />
               </li>
             ))}
           </ul>
