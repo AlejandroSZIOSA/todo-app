@@ -1,5 +1,29 @@
 import React from "react";
-let btnDoneColor; //External variabel
+//External variabels
+let btnDoneColor;
+
+const styles = {
+  CONTAINER: {
+    backgroundColor: "#E4E4E4",
+    display: "flex",
+    flexDirection: "row",
+    width: "600px",
+    border: "2px solid black",
+    borderRadius: "5px",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  BUTTONS_CONTAINER: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  TITLE_STYLE: {
+    fontSize: "x-large",
+    paddingLeft: "10px",
+    fontFamily: "cursive",
+  },
+};
 
 export default function TodoItem(props) {
   //Destructuring Item object :)
@@ -13,29 +37,6 @@ export default function TodoItem(props) {
   } else {
     btnDoneColor = "orange";
   }
-
-  const styles = {
-    CONTAINER: {
-      backgroundColor: "#E4E4E4",
-      display: "flex",
-      flexDirection: "row",
-      width: "600px",
-      border: "2px solid black",
-      borderRadius: "5px",
-      alignItems: "center",
-      justifyContent: "space-between",
-    },
-    BUTTONS_CONTAINER: {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-    },
-    TITLE_STYLE: {
-      fontSize: "x-large",
-      paddingLeft: "10px",
-      fontFamily: "cursive",
-    },
-  };
 
   return (
     <div style={styles.CONTAINER}>

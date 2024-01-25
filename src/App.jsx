@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 import TodoItem from "./components/TodoItem";
 
@@ -14,8 +14,9 @@ const styles = {
     alignItems: "center",
     fontSize: "20px",
   },
-  ADD_TODO_ITEM_BTN: {
-    backgroundColor: "aqua",
+  TEXT_INPUT_STYLE: {
+    height: "40px",
+    fontSize: "xx-large",
   },
   TODO_LISTA_CONTAINER: {
     display: "flex",
@@ -25,6 +26,7 @@ const styles = {
 
 function App() {
   const [todoList, setTodoList] = useState([]);
+  const inputRef = useRef();
 
   //Capture the text input
   function handlerTextInput(event) {
@@ -33,6 +35,7 @@ function App() {
 
   //Add Item to the todo list
   function addTodoItem() {
+    inputRef.current.value = ""; //useRef Hook :)
     setTodoList([...todoList, { id: nextIndex++, title: title, done: false }]);
   }
 
@@ -72,10 +75,11 @@ function App() {
               onChange={handlerTextInput}
               size="15"
               maxLength="17"
-              style={{ height: "40px", fontSize: "xx-large" }}
+              ref={inputRef}
+              style={styles.TEXT_INPUT_STYLE}
             ></input>
           </div>
-          <button onClick={addTodoItem} style={styles.ADD_TODO_ITEM_BTN}>
+          <button onClick={addTodoItem} style={{ backgroundColor: "aqua" }}>
             Add
           </button>
         </div>
