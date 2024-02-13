@@ -4,7 +4,6 @@ import TodoItem from "./components/TodoItem";
 
 //External variables
 var nextIndex = 0;
-var title;
 
 const styles = {
   ADD_TODO_ITEM_CONTAINER: {
@@ -26,6 +25,7 @@ const styles = {
 
 function App() {
   const [todoList, setTodoList] = useState([]);
+  const [textInput, setTextInput] = useState("");
   const inputRef = useRef();
 
   //Capture the text input
@@ -36,7 +36,15 @@ function App() {
   //Add Item to the todo list
   function addTodoItem() {
     inputRef.current.value = ""; //useRef Hook :)
-    setTodoList([...todoList, { id: nextIndex++, title: title, done: false }]);
+    //A very nice if else statement :)
+    const isTextInputEmpty = !textInput ? true : false;
+    if (!isTextInputEmpty) {
+      setTodoList([
+        ...todoList,
+        { id: nextIndex++, title: textInput, done: false },
+      ]);
+      setTextInput("");
+    }
   }
 
   //Callback function event with params
@@ -72,7 +80,7 @@ function App() {
           <div>
             <input
               type="text"
-              onChange={handlerTextInput}
+              onChange={(e) => setTextInput(e.target.value)}
               size="15"
               maxLength="17"
               ref={inputRef}
