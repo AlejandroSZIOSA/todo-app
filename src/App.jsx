@@ -28,11 +28,6 @@ function App() {
   const [textInput, setTextInput] = useState("");
   const inputRef = useRef();
 
-  //Capture the text input
-  function handlerTextInput(event) {
-    title = event.target.value;
-  }
-
   //Add Item to the todo list
   function addTodoItem() {
     inputRef.current.value = ""; //useRef Hook :)
